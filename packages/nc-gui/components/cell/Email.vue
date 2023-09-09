@@ -1,6 +1,15 @@
 <script lang="ts" setup>
 import type { VNodeRef } from '@vue/runtime-core'
-import { EditModeInj, IsExpandedFormOpenInj, IsSurveyFormInj, computed, inject, useI18n, validateEmail } from '#imports'
+import {
+  EditModeInj,
+  IsExpandedFormOpenInj,
+  IsFormInj,
+  IsSurveyFormInj,
+  computed,
+  inject,
+  useI18n,
+  validateEmail,
+} from '#imports'
 
 interface Props {
   modelValue: string | null | undefined
