@@ -74,7 +74,6 @@ watch(
     :type="isForm ? 'email' : 'text'"
     :autocomplete="isForm ? 'email' : 'text'"
     @blur="editEnabled = false"
-    @blur="editEnabled = false"
     @keydown.down.stop
     @keydown.left.stop
     @keydown.right.stop
