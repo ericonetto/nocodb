@@ -18,6 +18,8 @@ const { showNull } = useGlobal()
 
 const editEnabled = inject(EditModeInj)!
 
+const isForm = inject(IsFormInj, ref(false))
+
 const column = inject(ColumnInj)!
 
 // Used in the logic of when to display error since we are not storing the email if it's not valid
@@ -59,7 +61,10 @@ watch(
     v-if="editEnabled"
     :ref="focus"
     v-model="vModel"
-    class="w-full outline-none text-sm px-2"
+    class="w-full focus:!outline-none focus:ring-0 focus:border-none !border-none !outline-none text-sm px-2"
+    :type="isForm ? 'email' : 'text'"
+    :autocomplete="isForm ? 'email' : 'text'"
+    @blur="editEnabled = false"
     @blur="editEnabled = false"
     @keydown.down.stop
     @keydown.left.stop
