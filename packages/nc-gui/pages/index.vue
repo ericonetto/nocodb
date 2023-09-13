@@ -18,14 +18,12 @@ const { populateWorkspace } = useWorkspace()
 
 const { signedIn } = useGlobal()
 
-const router = useRouter()
-
-const route = router.currentRoute
+const route = useRoute()
 
 const { projectsList } = storeToRefs(projectsStore)
 
 const autoNavigateToProject = async () => {
-  const routeName = route.value.name as string
+  const routeName = route.name as string
   if (routeName !== 'index-typeOrId' && routeName !== 'index') {
     return
   }
@@ -34,14 +32,14 @@ const autoNavigateToProject = async () => {
 }
 
 const isSharedView = computed(() => {
-  const routeName = (route.value.name as string) || ''
+  const routeName = (route.name as string) || ''
 
   // check route is not project page by route name
   return !routeName.startsWith('index-typeOrId-projectId-') && !['index', 'index-typeOrId'].includes(routeName)
 })
 
 watch(
-  () => route.value.params.typeOrId,
+  () => route.params.typeOrId,
   async () => {
     // avoid loading projects for shared views
     if (isSharedView.value) {
@@ -49,7 +47,7 @@ watch(
     }
 
     // avoid loading projects for shared base
-    if (route.value.params.typeOrId === 'base') {
+    if (route.params.typeOrId === 'base') {
       await populateWorkspace()
       return
     }
@@ -62,7 +60,7 @@ watch(
     // Load projects
     await populateWorkspace()
 
-    if (!route.value.params.projectId && projectsList.value.length > 0) {
+    if (!route.params.projectId && projectsList.value.length > 0) {
       await autoNavigateToProject()
     }
   },

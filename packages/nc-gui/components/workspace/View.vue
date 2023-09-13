@@ -4,7 +4,7 @@ import type { WorkspaceType } from 'nocodb-sdk'
 import { isEeUI } from '#imports'
 
 const router = useRouter()
-const route = router.currentRoute
+const route = useRoute()
 
 const workspaceStore = useWorkspace()
 const { isWorkspaceOwnerOrCreator, isWorkspaceOwner, activeWorkspace, workspaces } = storeToRefs(workspaceStore)
@@ -12,11 +12,11 @@ const { loadCollaborators } = workspaceStore
 
 const tab = computed({
   get() {
-    return route.value.query?.tab ?? 'collaborators'
+    return route.query?.tab ?? 'collaborators'
   },
   set(tab: string) {
     if (tab === 'collaborators') loadCollaborators()
-    router.push({ query: { ...route.value.query, tab } })
+    router.push({ query: { ...route.query, tab } })
   },
 })
 

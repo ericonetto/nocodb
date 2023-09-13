@@ -2,9 +2,7 @@
 import type { HookType } from 'nocodb-sdk'
 // const showWebhookDrawer = ref(false)
 
-const router = useRouter()
-
-const route = router.currentRoute
+const route = useRoute()
 
 const { hooks, webhookMainUrl, isHooksLoading } = storeToRefs(useWebhooksStore())
 const { loadHooksList, deleteHook: _deleteHook, copyHook, saveHooks, navigateToWebhook } = useWebhooksStore()
@@ -111,21 +109,21 @@ const onEditorClose = () => {
 }
 
 watch(
-  () => route.value.params.slugs,
+  () => route.params.slugs,
   async () => {
-    if (!route.value.params.slugs) {
+    if (!route.params.slugs) {
       isDraftMode.value = false
       selectedHookId.value = undefined
       return
     }
 
-    if (route.value.params.slugs[1] === 'create') {
+    if (route.params.slugs[1] === 'create') {
       isDraftMode.value = true
     } else {
       isDraftMode.value = false
     }
 
-    selectedHookId.value = (route.value.params.slugs && route.value.params.slugs[1]) || undefined
+    selectedHookId.value = (route.params.slugs && route.params.slugs[1]) || undefined
   },
   {
     immediate: true,

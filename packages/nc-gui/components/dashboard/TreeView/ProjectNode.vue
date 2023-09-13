@@ -26,8 +26,7 @@ const indicator = h(LoadingOutlined, {
   spin: true,
 })
 
-const router = useRouter()
-const route = router.currentRoute
+const route = useRoute()
 
 const { setMenuContext, openRenameTableDialog, duplicateTable, contextMenuTarget } = inject(TreeViewInj)!
 
@@ -77,7 +76,7 @@ const isProjectDeleteDialogVisible = ref(false)
 
 // If only project is open, i.e in case of docs, project view is open and not the page view
 const projectViewOpen = computed(() => {
-  const routeNameSplit = String(route.value?.name).split('projectId-index-index')
+  const routeNameSplit = String(route?.name).split('projectId-index-index')
   if (routeNameSplit.length <= 1) return false
 
   const routeNameAfterProjectView = routeNameSplit[routeNameSplit.length - 1]
@@ -240,7 +239,7 @@ const onProjectClick = async (project: NcProject, ignoreNavigation?: boolean, to
 
   let isSharedBase = false
   // if shared base ignore navigation
-  if (route.value.params.typeOrId === 'base') {
+  if (route.params.typeOrId === 'base') {
     isSharedBase = true
   }
 

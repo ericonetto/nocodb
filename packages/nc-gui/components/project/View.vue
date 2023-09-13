@@ -7,8 +7,7 @@ const { activeWorkspace } = storeToRefs(useWorkspace())
 
 const { navigateToProjectPage } = useProject()
 
-const router = useRouter()
-const route = router.currentRoute
+const route = useRoute()
 
 /* const defaultBase = computed(() => {
   return openedProject.value?.bases?.[0]
@@ -23,7 +22,7 @@ const activeKey = ref<'allTable' | 'collaborator' | 'data-source'>('allTable')
 const baseSettingsState = ref('')
 
 watch(
-  () => route.value.query?.page,
+  () => route.query?.page,
   (newVal, oldVal) => {
     if (newVal && newVal !== oldVal) {
       if (newVal === 'collaborator') {

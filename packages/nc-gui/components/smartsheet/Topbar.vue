@@ -3,8 +3,7 @@ import { IsPublicInj, inject, ref, useSmartsheetStoreOrThrow, useViewsStore } fr
 
 const { isGrid, isForm, isGallery, isKanban, isMap } = useSmartsheetStoreOrThrow()
 
-const router = useRouter()
-const route = router.currentRoute
+const route = useRoute()
 
 const isPublic = inject(IsPublicInj, ref(false))
 
@@ -12,7 +11,7 @@ const { isViewsLoading } = storeToRefs(useViewsStore())
 
 const { isMobileMode } = useGlobal()
 
-const isSharedBase = computed(() => route.value.params.typeOrId === 'base')
+const isSharedBase = computed(() => route.params.typeOrId === 'base')
 </script>
 
 <template>

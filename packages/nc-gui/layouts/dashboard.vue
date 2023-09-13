@@ -2,8 +2,7 @@
 import { Pane, Splitpanes } from 'splitpanes'
 import 'splitpanes/dist/splitpanes.css'
 
-const router = useRouter()
-const route = router.currentRoute
+const route = useRoute()
 
 const {
   isLeftSidebarOpen,
@@ -86,7 +85,7 @@ onBeforeUnmount(() => {
 })
 
 watch(route, () => {
-  if (route.value.name === 'index-index') {
+  if (route.name === 'index-index') {
     isLeftSidebarOpen.value = true
   }
 })

@@ -64,7 +64,7 @@ const stackIdxToBeDeleted = ref(0)
 
 const router = useRouter()
 
-const route = router.currentRoute
+const route = useRoute()
 
 const { getPossibleAttachmentSrc } = useAttachment()
 
@@ -162,7 +162,7 @@ const expandForm = (row: RowType, state?: Record<string, any>) => {
   if (rowId) {
     router.push({
       query: {
-        ...route.value.query,
+        ...route.query,
         rowId,
       },
     })
@@ -195,13 +195,13 @@ const showContextMenu = (e: MouseEvent, target?: RowType) => {
 
 const expandedFormOnRowIdDlg = computed({
   get() {
-    return !!route.value.query.rowId
+    return !!route.query.rowId
   },
   set(val) {
     if (!val)
       router.push({
         query: {
-          ...route.value.query,
+          ...route.query,
           rowId: undefined,
         },
       })
