@@ -41,7 +41,8 @@ const page = computed({
   set: async (p) => {
     isPaginationLoading.value = true
     try {
-      await changePage?.(p)
+      // TODO implement skeleton loading
+      changePage?.(p)
     } catch (e) {
       console.error(e)
     } finally {

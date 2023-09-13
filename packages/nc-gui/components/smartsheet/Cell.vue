@@ -257,11 +257,4 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped lang="scss">
-.nc-grid-numeric-cell {
-  text-align: v-bind(numberInputAlignment);
-  :deep(input) {
-    text-align: v-bind(numberInputAlignment);
-  }
-}
-</style>
+<style scoped lang="scss"></style>
