@@ -194,11 +194,11 @@ export function useViewData(
   }
 
   async function changePage(page: number) {
-    paginationData.value.page = page
     await loadData({
       offset: (page - 1) * (paginationData.value.pageSize || appInfoDefaultLimit),
       where: where?.value,
     } as any)
+    paginationData.value.page = page
     $e('a:grid:pagination')
   }
 
